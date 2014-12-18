@@ -43,7 +43,9 @@ include $(BUILD_STATIC_LIBRARY)
 LIB_WIFI_HAL := libwifi-hal
 
 ifeq ($(BOARD_WLAN_DEVICE), bcmdhd)
-  LIB_WIFI_HAL := libwifi-hal-bcm
+    ifeq ($(WIFI_DRIVER_MODULE_PATH),)
+        LIB_WIFI_HAL := libwifi-hal-bcm
+    endif
 else ifeq ($(BOARD_WLAN_DEVICE), qcwcn)
   LIB_WIFI_HAL := libwifi-hal-qcom
 else ifeq ($(BOARD_WLAN_DEVICE), mrvl)
